@@ -1,0 +1,42 @@
+package DSA_Assignment.DSA_Assignment_4;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Exercise2 {
+    public static int BinarySearch(int[] arr, int target){
+        int left = 0;
+        int right = arr.length - 1;
+        int result = -1;
+
+        while (left <= right) {
+            int mid = (left + right)/2;
+            if(arr[mid] == target){
+                result = mid;
+                right = mid - 1;
+            }
+            else if(arr[mid] < target){
+                left = mid + 1;
+            }
+            else{
+                right = mid - 1;
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter target: ");
+        int target = scanner.nextInt();
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        Arrays.sort(arr);
+        int result = BinarySearch(arr, target);
+        if(result == -1){
+            System.out.println("Cannot find the number " + target + " in the array");
+        }
+        else{
+            System.out.println("Number " + target + " is found at index " + result);
+        }
+        scanner.close();
+    }
+}
