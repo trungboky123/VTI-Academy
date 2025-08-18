@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise3.Question1;
+package Exercise3.Question1;
 
 public class Student<T> {
     public T id;

@@ -1,4 +1,4 @@
-package DSA_Assignment.DSA_Assignment_4;
+package DSA_Assignment_4;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package Assignment_Lesson_5.Exercise6.Question1;
+package Exercise6.Question1;
 
 public class VietnamesePhone extends Phone{
     @Override

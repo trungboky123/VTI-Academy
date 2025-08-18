@@ -1,4 +1,4 @@
-package Assignment_Lesson_5.Exercise5.Question1;
+package Exercise5.Question1;
 
 public class Employee extends Staff{
     private String work;

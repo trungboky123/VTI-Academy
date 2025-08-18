@@ -1,4 +1,4 @@
-package Assignment_Lesson_7.Exercise2.Question3;
+package Exercise2.Question3;
 
 public class Student {
     public final void study(){

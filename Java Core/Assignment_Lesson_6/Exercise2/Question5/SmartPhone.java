@@ -1,6 +1,4 @@
-package Assignment_Lesson_6.Exercise2.Question5;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
+package Exercise2.Question5;
 
 public class SmartPhone extends Phone implements Weapon{
     @Override

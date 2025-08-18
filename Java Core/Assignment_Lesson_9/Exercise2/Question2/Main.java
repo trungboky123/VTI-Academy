@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise2.Question2;
+package Exercise2.Question2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package Assignment_Lesson_5.Exercise5.Question2;
+package Exercise5.Question2;
 
-import Assignment_Lesson_5.Exercise5.Question1.Staff;
+import Exercise5.Question1.Staff;
 
 public class StaffManager {
-    private Staff [] staffs;
+    private Staff[] staffs;
     private int numberOfStaffs;
     private final int maxNumber = 100;
     

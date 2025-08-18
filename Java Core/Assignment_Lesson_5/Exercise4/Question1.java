@@ -1,4 +1,4 @@
-package Assignment_Lesson_5.Exercise4;
+package Exercise4;
 
 public class Question1 {
     public class Student{

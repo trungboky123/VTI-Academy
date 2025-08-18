@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise3.Question4;
+package Exercise3.Question4;
 
 public class GenericMethods {
     public static <T> void printArray(T[] array){

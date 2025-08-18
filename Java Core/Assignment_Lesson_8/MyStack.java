@@ -1,5 +1,3 @@
-package Assigment_Lesson_8;
-
 import java.util.Stack;
 
 public class MyStack {

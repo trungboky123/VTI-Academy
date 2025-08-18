@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise3.Question1;
+package Exercise3.Question1;
 
 import java.util.ArrayList;
 import java.util.List;

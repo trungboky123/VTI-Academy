@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise1.Question5;
+package Exercise1.Question5;
 
 import java.util.Objects;
 

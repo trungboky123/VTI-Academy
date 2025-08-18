@@ -1,5 +1,3 @@
-package Assignment_Lesson_11;
-
 import java.util.Arrays;
 import java.util.Scanner;
 

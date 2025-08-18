@@ -1,6 +1,6 @@
-package Assignment_Lesson_9.Exercise3.Question2;
+package Exercise3.Question2;
 
-import Assignment_Lesson_9.Exercise1.Question4.Student;
+import Exercise1.Question4.Student;
 
 public class Main {
     public static void main(String[] args) {

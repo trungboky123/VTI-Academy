@@ -1,4 +1,4 @@
-package Assignment_Lesson_6.Exercise1.Question1;
+package Exercise1.Question1;
 
 public class News implements INews{
     private int id;

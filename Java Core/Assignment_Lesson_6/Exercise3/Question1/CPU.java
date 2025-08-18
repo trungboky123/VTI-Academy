@@ -1,4 +1,4 @@
-package Assignment_Lesson_6.Exercise3.Question1;
+package Exercise3.Question1;
 
 public class CPU {
     protected double price;

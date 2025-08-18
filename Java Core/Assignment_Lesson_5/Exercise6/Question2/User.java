@@ -1,4 +1,4 @@
-package Assignment_Lesson_5.Exercise6.Question2;
+package Exercise6.Question2;
 
 public abstract class User {
     private String name;

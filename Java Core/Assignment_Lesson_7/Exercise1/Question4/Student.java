@@ -1,4 +1,4 @@
-package Assignment_Lesson_7.Exercise1.Question4;
+package Exercise1.Question4;
 
 public class Student {
     protected int id;

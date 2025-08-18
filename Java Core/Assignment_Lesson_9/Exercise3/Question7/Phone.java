@@ -1,6 +1,6 @@
-package Assignment_Lesson_9.Exercise3.Question7;
+package Exercise3.Question7;
 
-import Assignment_Lesson_9.Exercise3.Question6.MyMap;
+import Exercise3.Question6.MyMap;
 
 public class Phone<K, V> extends MyMap<K, V> {
 

@@ -1,5 +1,3 @@
-package Assignment_Lesson_11;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,7 +16,8 @@ public class Exercise1 {
         scanner.nextLine();
         Map<Integer, Integer> frequencyMap = new LinkedHashMap<>();
         for(int num : arr){
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+            int count = frequencyMap.getOrDefault(num, 0);
+            frequencyMap.put(num, count + 1);
         }
         for(Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()){
             System.out.println("Number: " + entry.getKey() + ": " + entry.getValue() + " time(s)");

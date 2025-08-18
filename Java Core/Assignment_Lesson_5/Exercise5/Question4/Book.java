@@ -1,4 +1,4 @@
-package Assignment_Lesson_5.Exercise5.Question4;
+package Exercise5.Question4;
 
 public class Book extends Document{
     protected String author;

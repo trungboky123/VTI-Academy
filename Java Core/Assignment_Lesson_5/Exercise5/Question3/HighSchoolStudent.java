@@ -1,6 +1,6 @@
-package Assignment_Lesson_5.Exercise5.Question3;
+package Exercise5.Question3;
 
-public class HighSchoolStudent extends Student{
+public class HighSchoolStudent extends Student {
     protected String clazz;
     protected String desiredUniversity;
 

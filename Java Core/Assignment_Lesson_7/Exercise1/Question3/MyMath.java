@@ -1,4 +1,4 @@
-package Assignment_Lesson_7.Exercise1.Question3;
+package Exercise1.Question3;
 
 public class MyMath {
     public static int max(int a, int b){

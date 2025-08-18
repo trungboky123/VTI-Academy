@@ -1,4 +1,4 @@
-package Assignment_Lesson_6.Exercise3.Question2;
+package Exercise3.Question2;
 
 public class Car {
     protected String name;

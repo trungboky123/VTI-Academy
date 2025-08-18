@@ -1,6 +1,6 @@
-package Assignment_Lesson_9.Exercise3.Question8;
+package Exercise3.Question8;
 
-import Assignment_Lesson_9.Exercise3.Question6.MyMap;
+import Exercise3.Question6.MyMap;
 
 public class Staff<K, V> extends MyMap<K, V>{
     

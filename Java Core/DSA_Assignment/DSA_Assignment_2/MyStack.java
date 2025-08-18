@@ -1,4 +1,4 @@
-package DSA_Assignment.DSA_Assignment_2;
+package DSA_Assignment_2;
 import java.util.Stack;
 
 public class MyStack {

@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise1.Question2;
+package Exercise1.Question2;
 
 import java.util.LinkedList;
 import java.util.Queue;

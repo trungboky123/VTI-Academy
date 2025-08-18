@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise2.Question1;
+package Exercise2.Question1;
 
 import java.time.LocalDate;
 

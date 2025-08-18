@@ -1,3 +1,5 @@
+package Exercise1;
+
 public class Question1 {
     public static void main(String[] args) {
         float salaryAcc1 = 5240.5f;

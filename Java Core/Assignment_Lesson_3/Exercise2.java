@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Exercise2 {
-    public static void SelectionSort(int arr[], int n){
+    public static void SelectionSort(int[] arr, int n){
         for(int i = 0; i < n - 1; i++){
             int min = i;
             for(int j = i + 1; j < n; j++){

@@ -1,4 +1,4 @@
-package Assignment_Lesson_7.Exercise1.Question2;
+package Exercise1.Question2;
 
 public class Student {
     protected int id;
@@ -9,5 +9,19 @@ public class Student {
     public Student(int id, String name){
         this.id = id;
         this.name = name;
+    }
+
+    public Student(String string) {
+        //TODO Auto-generated constructor stub
+    }
+
+    public String getStudentId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getStudentId'");
+    }
+
+    public String getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
     }
 }

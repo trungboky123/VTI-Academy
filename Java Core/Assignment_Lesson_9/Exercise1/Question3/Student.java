@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise1.Question3;
+package Exercise1.Question3;
 
 public class Student {
     protected static int autoId = 1;

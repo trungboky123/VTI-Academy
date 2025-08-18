@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise1.Question3;
+package Exercise1.Question3;
 
 import java.util.HashMap;
 import java.util.HashSet;

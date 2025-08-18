@@ -1,4 +1,4 @@
-package Assignment_Lesson_6.Exercise1.Question2;
+package Exercise1.Question2;
 
 public class ACandidate extends Candidate{
     public ACandidate(String registrationNumber, String fullName, String address, int priorityLevel){

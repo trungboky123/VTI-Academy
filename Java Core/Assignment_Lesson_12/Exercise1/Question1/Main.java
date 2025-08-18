@@ -1,4 +1,4 @@
-package Assignment_Lesson_12.Exercise1.Question1;
+package Exercise1.Question1;
 
 import java.util.Date;
 

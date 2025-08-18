@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise4.Question3;
+package Exercise4.Question3;
 
 public class Main {
     public static void main(String[] args) {

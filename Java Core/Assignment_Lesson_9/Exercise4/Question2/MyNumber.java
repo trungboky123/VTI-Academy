@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise4.Question2;
+package Exercise4.Question2;
 
 public class MyNumber<N extends Number> {
     public N number;

@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise3.Question5;
+package Exercise3.Question5;
 
 public class Employee<T> {
     public int id;

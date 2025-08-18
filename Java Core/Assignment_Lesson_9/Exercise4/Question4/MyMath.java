@@ -1,4 +1,4 @@
-package Assignment_Lesson_9.Exercise4.Question4;
+package Exercise4.Question4;
 
 public class MyMath<T> {
     

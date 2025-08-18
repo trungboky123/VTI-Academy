@@ -1,21 +1,20 @@
-package Assignment_Lesson_5.Exercise1;
+package Exercise1;
 
 import java.time.LocalDate;
-
-import Assignment_Lesson_5.Exercise1.Question2.Account;
+import Exercise1.Question2.Account;
 
 public class Question3 {
     public static class Group {
         String name;
         String creator;
-        Account [] accounts;
+        Account[] accounts;
         LocalDate createDate;
 
         public Group(){
 
         }
 
-        public Group(String name, String creator, Account [] accounts, LocalDate createDate){
+        public Group(String name, String creator, Account[] accounts, LocalDate createDate){
             this.name = name;
             this.creator = creator;
             this.accounts = accounts;
@@ -28,7 +27,7 @@ public class Question3 {
             this.createDate = createDate;
             this.accounts = new Account[usernames.length];
             for (int i = 0; i < usernames.length; i++) {
-                this.accounts[i] = new Account(i, creator, usernames[i], name, name)
+                this.accounts[i] = new Account(i, creator, usernames[i], name, name);
             }
         }
     }

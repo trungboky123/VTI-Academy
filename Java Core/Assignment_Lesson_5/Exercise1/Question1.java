@@ -1,4 +1,4 @@
-package Assignment_Lesson_5.Exercise1;
+package Exercise1;
 
 public class Question1 {
     public  static class Department {
