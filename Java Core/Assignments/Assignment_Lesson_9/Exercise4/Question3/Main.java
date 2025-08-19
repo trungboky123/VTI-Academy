@@ -1,0 +1,9 @@
+package Assignments.Assignment_Lesson_9.Exercise4.Question3;
+
+public class Main {
+    public static void main(String[] args) {
+        Integer a = 5;
+        Double b = 10.5;
+        System.out.println("Max Number: " + GenericMethod.max(a, b));
+    }
+}
