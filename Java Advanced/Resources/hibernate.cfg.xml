@@ -4,7 +4,8 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/testingsystem</property>
+<!--        <property name="connection.url">jdbc:mysql://localhost:3306/testingsystem</property>-->
+        <property name="connection.url">jdbc:mysql://localhost:3306/java_advanced</property>
         <property name="connection.username">root</property>
         <property name="connection.password">memelord1</property>
 
@@ -18,16 +19,35 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Department"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Position"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Account"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Group"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.GroupAccount"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.TypeQuestion"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Category"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Question"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Answer"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_2.Entities.Exam"/>-->
 
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Department"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Position"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Account"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Group"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.GroupAccount"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.TypeQuestion"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Category"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Question"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Answer"/>
-        <mapping class="Assignments.Assignment_Lesson_2.Entities.Exam"/>
+        <mapping class="Lessons.Lesson_3.Product"/>
+        <mapping class="Lessons.Lesson_3.Category"/>
+
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Department"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Position"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Account"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Address"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Manager"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Employee"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Question"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Salary"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Exam"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.ExamQuestion"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Answer"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.Group"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.GroupAccount"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.TypeQuestion"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.CategoryQuestion"/>
+        <mapping class="Assignments.Assignment_Lesson_3.Entity.DetailDepartment"/>
     </session-factory>
 </hibernate-configuration>
