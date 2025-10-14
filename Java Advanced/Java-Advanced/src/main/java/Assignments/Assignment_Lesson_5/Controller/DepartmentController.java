@@ -22,4 +22,9 @@ public class DepartmentController {
     public List<DepartmentDTO> getAllDepartments() {
         return departmentService.getAllDepartments();
     }
+
+    @PutMapping("/{id}")
+    public DepartmentDTO updateDepartment(@PathVariable int id, @RequestBody DepartmentDTO departmentDTO) {
+        return departmentService.updateDepartment(id, departmentDTO.getName());
+    }
 }

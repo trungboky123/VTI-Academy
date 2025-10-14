@@ -5,8 +5,8 @@
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 <!--        <property name="connection.url">jdbc:mysql://localhost:3306/testingsystem</property>-->
-<!--        <property name="connection.url">jdbc:mysql://localhost:3306/java_advanced</property>-->
-        <property name="connection.url">jdbc:mysql://localhost:3306/review_lesson_1_2_3</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/java_advanced</property>
+<!--        <property name="connection.url">jdbc:mysql://localhost:3306/review_lesson_1_2_3</property>-->
         <property name="connection.username">root</property>
         <property name="connection.password">memelord1</property>
 
@@ -56,6 +56,9 @@
 <!--        <mapping class="Assignments.Assignment_Lesson_4.Entity.Department"/>-->
 <!--        <mapping class="Assignments.Assignment_Lesson_4.Entity.Account"/>-->
 
-        <mapping class="Assignments.Assignment_Lesson_5.Entity.Department"/>
+<!--        <mapping class="Assignments.Assignment_Lesson_5.Entity.Department"/>-->
+<!--        <mapping class="Assignments.Assignment_Lesson_5.Entity.Account"/>-->
+
+<!--        <mapping class="Assignments.Assignment_Lesson_6.Entity.Department"/>-->
     </session-factory>
 </hibernate-configuration>

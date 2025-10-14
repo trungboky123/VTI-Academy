@@ -1,4 +1,4 @@
-package Assignments.Assignment_Lesson_6.Entity;
+package Lessons.Lesson_6;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,5 +19,4 @@ public class Department {
 
     @Column(name = "department_name", nullable = false, unique = true, length = 30)
     private String name;
-
 }

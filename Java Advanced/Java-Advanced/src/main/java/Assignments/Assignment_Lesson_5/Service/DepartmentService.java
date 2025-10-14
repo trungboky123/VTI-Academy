@@ -25,4 +25,10 @@ public class DepartmentService implements IDepartmentService{
         List<Department> departments = departmentRepository.getAllDepartments();
         return departments.stream().map(d -> new DepartmentDTO(d.getId(), d.getName())).toList();
     }
+
+    @Override
+    public DepartmentDTO updateDepartment(int id, String newName) {
+        Department department = departmentRepository.updateDepartment(id, newName);
+        return new DepartmentDTO(department.getId(), department.getName());
+    }
 }

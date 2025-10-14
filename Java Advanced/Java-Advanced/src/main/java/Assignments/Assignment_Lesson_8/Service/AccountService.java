@@ -4,6 +4,7 @@ import Assignments.Assignment_Lesson_8.DTO.Response.AccountResponse;
 import Assignments.Assignment_Lesson_8.Entity.Account;
 import Assignments.Assignment_Lesson_8.Repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AccountService implements IAccountService {
+    private final ModelMapper modelMapper;
     private final AccountRepository accountRepository;
 
     @Override
@@ -28,6 +30,6 @@ public class AccountService implements IAccountService {
                     criteriaBuilder.like(criteriaBuilder.lower(root.join("department").get("name")), "%" + departmentName.toLowerCase() + "%"));
         }
 
-        return accountRepository.findAll(specification).stream().map(a -> new AccountResponse(a.getUsername(), a.getFullName(), a.getDepartment().getName())).toList();
+        return accountRepository.findAll(specification).stream().map(a -> modelMapper.map(a, AccountResponse.class)).toList();
     }
 }

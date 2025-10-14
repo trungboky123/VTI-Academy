@@ -7,4 +7,5 @@ import java.util.List;
 public interface IDepartmentService {
     DepartmentDTO create(DepartmentDTO departmentDTO);
     List<DepartmentDTO> getAllDepartments();
+    DepartmentDTO updateDepartment(int id, String newName);
 }

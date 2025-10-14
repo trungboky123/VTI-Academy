@@ -3,6 +3,7 @@ package Assignments.Assignment_Lesson_7.Service;
 import Assignments.Assignment_Lesson_7.DTO.DepartmentDTO;
 import Assignments.Assignment_Lesson_7.Entity.Department;
 import Assignments.Assignment_Lesson_7.Repository.DepartmentRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
