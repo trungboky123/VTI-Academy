@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,11 +21,11 @@ public class RefreshTokenService implements IRefreshTokenService {
     @Value("${jwt.refresh-expiration}")
     private Long refreshExpiration;
 
+    @Transactional
     @Override
     public RefreshToken createRefreshToken(User user) {
-        refreshTokenRepository.deleteByUser(user);
+        RefreshToken token = refreshTokenRepository.findByUserId(user.getId()).orElse(new RefreshToken());
 
-        RefreshToken token = new RefreshToken();
         token.setUser(user);
         token.setToken(UUID.randomUUID().toString());
         token.setExpiredDate(Instant.now().plusMillis(refreshExpiration));
@@ -47,9 +47,10 @@ public class RefreshTokenService implements IRefreshTokenService {
         return refreshTokenRepository.findByToken(token);
     }
 
+    @Transactional
     @Override
-    public void deleteByUser(User user) {
-        refreshTokenRepository.deleteByUser(user);
+    public void deleteByUserId(Integer id) {
+        refreshTokenRepository.deleteByUserId(id);
     }
 
 }

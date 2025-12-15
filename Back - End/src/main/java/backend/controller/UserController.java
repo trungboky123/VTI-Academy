@@ -17,12 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -55,41 +54,44 @@ public class UserController {
         return ResponseEntity.ok(userReponse);
     }
 
-    @Transactional
     @PostMapping("/auth/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletResponse response) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.findByUsername(request.getUsername());
+        try {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            User user = userService.findByUsername(userDetails.getUsername());
 
-        String accessToken = jwtService.generateAccessToken(userDetails);
-        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
+            String accessToken = jwtService.generateAccessToken(userDetails);
+            RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
 
-        Cookie cookie = new Cookie("refreshToken", refreshToken.getToken());
-        cookie.setHttpOnly(true);
-        cookie.setSecure(true);
-        cookie.setPath("/auth/refresh");
-        cookie.setMaxAge(7 * 24 * 60 * 60);
+            Cookie cookie = new Cookie("refreshToken", refreshToken.getToken());
+            cookie.setHttpOnly(true);
+            cookie.setSecure(true);
+            cookie.setPath("/users/auth/refresh");
+            cookie.setMaxAge(7 * 24 * 60 * 60);
 
-        response.addCookie(cookie);
-        return ResponseEntity.ok(Map.of(
-                "accessToken", accessToken,
-                "message", "Login successfully!"));
+            response.addCookie(cookie);
+            return ResponseEntity.ok(Map.of(
+                    "accessToken", accessToken,
+                    "message", "Login successfully!"));
+        } catch (BadCredentialsException e) {
+            throw new BadCredentialsException("Incorrect Password!");
+        }
     }
 
-    @Transactional
     @PostMapping("/auth/refresh")
-    public ResponseEntity<?> refresh(@CookieValue(value = "refreshToken", required = false) String token, HttpServletResponse response) {
-        if (token == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Refresh Token missing!"));
+    public ResponseEntity<?> refresh(@CookieValue(value = "refreshToken", required = false) String refreshToken) {
+        if (refreshToken == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Refresh Token missing!",
+                    "code", "NO_REFRESH_TOKEN"));
         }
 
-        RefreshToken refreshToken = refreshTokenService
-                .findByToken(token)
+        RefreshToken token = refreshTokenService
+                .findByToken(refreshToken)
                 .map(refreshTokenService::verifyExpiration)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid Refresh Token"));
 
-        User user = refreshToken.getUser();
+        User user = token.getUser();
         UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
         String newAccessToken = jwtService.generateAccessToken(userDetails);
 
@@ -103,22 +105,17 @@ public class UserController {
     }
 
     @PostMapping("/auth/logout")
-    public ResponseEntity<?> logout(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) {
-        if (userDetails == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not authenticated!");
-        }
+    public ResponseEntity<?> logout(Authentication authentication, HttpServletResponse response) {
+        User user = (User) authentication.getPrincipal();
+        refreshTokenService.deleteByUserId(user.getId());
 
-        User user = userService.findByUsername(userDetails.getUsername());
-
-        refreshTokenService.deleteByUser(user);
-
-        Cookie cookie = new Cookie("refreshToken", "");
+        Cookie cookie = new Cookie("refreshToken", null);
         cookie.setHttpOnly(true);
         cookie.setSecure(true);
-        cookie.setPath("users/auth/refresh");
+        cookie.setPath("/users/auth/refresh");
         cookie.setMaxAge(0);
-
         response.addCookie(cookie);
+
         return ResponseEntity.ok("Logged out!");
     }
 
@@ -131,8 +128,8 @@ public class UserController {
 
     @PreAuthorize("#id == authentication.principal.id")
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody UpdateRequest request) {
-        userService.update(request);
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody UpdateRequest request) {
+        userService.update(id, request);
         return ResponseEntity.ok(Map.of("message", "Update successfully!"));
     }
 

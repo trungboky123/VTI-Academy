@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @Service
@@ -33,20 +36,6 @@ public class UserService implements IUserService, UserDetailsService {
         Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
         return userRepository.findAll(pageable).map(user -> modelMapper.map(user, UserReponse.class));
-    }
-
-    @Transactional
-    @Override
-    public User isLogin(LoginRequest request) {
-        User user = userRepository.findByUsername(request.getUsername());
-        if (user == null) {
-            throw new UsernameNotFoundException("Username not found!");
-        }
-        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return user;
-        }
-
-        return null;
     }
 
     @Transactional
@@ -100,21 +89,31 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Transactional
     @Override
-    public void update(UpdateRequest request) {
-        User user = userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found!"));
-        User u = userRepository.findByUsername(request.getUsername());
+    public void update(Integer id, UpdateRequest request) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
-        if (u != null) {
-            throw new RuntimeException("Username has been used!");
+        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+            throw new BadCredentialsException("Your current password is incorrect!");
+        }
+        if (request.getUsername() != null) {
+            User u = userRepository.findByUsername(request.getUsername());
+            if (u != null && !u.getUsername().equals(user.getUsername())) {
+                throw new RuntimeException("Username has been used!");
+            }
+            user.setUsername(request.getUsername());
         }
 
-        user.setUsername(request.getUsername());
-        if (request.getPassword() != null) {
-            user.setPassword(request.getPassword());
+        if (request.getNewPassword() != null) {
+            user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         }
 
-        user.setDepartment(request.getDepartment());
-        user.setCity(request.getCity());
+        if (request.getDepartment() != null) {
+            user.setDepartment(request.getDepartment());
+        }
+
+        if (request.getCity() != null) {
+            user.setCity(request.getCity());
+        }
 
         userRepository.save(user);
     }
@@ -133,7 +132,7 @@ public class UserService implements IUserService, UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found!");
+            throw new BadCredentialsException("Username not found!");
         }
 
         String authRole = "ROLE_" + user.getRole().name().toUpperCase();
